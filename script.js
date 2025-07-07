@@ -196,7 +196,7 @@ function updateUI(current, forecast) {
         const forecastItemHtml = `
             <div class="forecast-item">
                 <div class="forecast-day">${dayOfWeek}</div>
-                <div class="forecast-icon">${getWeatherIcon(mostFrequentWeatherId)}</div>
+                <div class="forecast-icon">${getWeatherIcon(parseInt(mostFrequentWeatherId))}</div>
                 <div class="forecast-temp">${maxTemp}°/${minTemp}°</div>
             </div>
         `;
