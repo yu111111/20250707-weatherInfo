@@ -1,5 +1,5 @@
 // APIキー (config.jsから読み込まれる)
-// const API_KEY = 'YOUR_API_KEY_HERE';
+// const API_KEY = 'YOUR_API_KEY_HERE'; // この行は削除またはコメントアウトしてください
 
 // DOM要素の取得
 const searchBtn = document.querySelector('.search-btn');
@@ -85,35 +85,28 @@ function getCurrentLocationWeather() {
  * @param {number} lon - 経度
  */
 async function getWeatherData(city, lat, lon) {
-    if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
-        alert('APIキーが設定されていません。config.jsを確認してください。');
-        return;
-    }
+    // APIキーのチェックは不要になります
+    // if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
+    //     alert('APIキーが設定されていません。config.jsを確認してください。');
+    //     return;
+    // }
 
-    const currentWeatherUrl = city 
-        ? `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=ja`
-        : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=ja`;
-
-    const forecastUrl = city
-        ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric&lang=ja`
-        : `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=ja`;
+    // VercelのAPI Routeを呼び出すように変更
+    let apiUrl = '/api/weather?'; // 相対パスでOKです
 
     try {
-        // APIリクエストを並列で実行
-        const [currentWeatherResponse, forecastResponse] = await Promise.all([
-            fetch(currentWeatherUrl),
-            fetch(forecastUrl)
-        ]);
+        const response = await fetch(apiUrl); // API Routeを呼び出す
 
-        if (!currentWeatherResponse.ok || !forecastResponse.ok) {
-            throw new Error('天気情報の取得に失敗しました。都市名が正しいか確認してください。');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || '天気情報の取得に失敗しました。');
         }
 
-        const currentWeatherData = await currentWeatherResponse.json();
-        const forecastData = await forecastResponse.json();
+        // API Routeからのレスポンスはcurrentとforecastを含むオブジェクト
+        const data = await response.json(); 
 
         // UIを更新
-        updateUI(currentWeatherData, forecastData);
+        updateUI(data.current, data.forecast); 
 
     } catch (error) {
         console.error('Error fetching weather data:', error);
