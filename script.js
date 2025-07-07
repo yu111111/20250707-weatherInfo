@@ -94,6 +94,12 @@ async function getWeatherData(city, lat, lon) {
     // VercelのAPI Routeを呼び出すように変更
     let apiUrl = '/api/weather?'; // 相対パスでOKです
 
+    if (city) {
+        apiUrl += `city=${city}`;
+    } else if (lat && lon) {
+        apiUrl += `lat=${lat}&lon=${lon}`;
+    }
+
     try {
         const response = await fetch(apiUrl); // API Routeを呼び出す
 
