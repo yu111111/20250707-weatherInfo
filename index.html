@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="weather-app">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="都市名を入力してください">
+            <button class="search-btn">検索</button>
+        </div>
+        
+        <div class="location">Tokyo</div>
+        <div class="date">2025年7月7日 (月)</div>
+        
+        <div class="current-weather">
+            <div class="weather-icon">☀️</div>
+            <div class="temperature">28°</div>
+            <div class="temp-range">
+                <span class="temp-high">最高 32°</span>
+                <span class="temp-low">最低 21°</span>
+            </div>
+            <div class="weather-description">晴れ</div>
+        </div>
+        
+        <div class="weather-details">
+            <div class="detail-item">
+                <div class="detail-label">湿度</div>
+                <div class="detail-value">65%</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">風速</div>
+                <div class="detail-value">12km/h</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">気圧</div>
+                <div class="detail-value">1013hPa</div>
+            </div>
+        </div>
+        
+        <div class="hourly-forecast">
+            <div class="hourly-title">3時間ごとの予報</div>
+            <div class="hourly-items">
+                <div class="hourly-item">
+                    <div class="hourly-time">14:00</div>
+                    <div class="hourly-icon">☀️</div>
+                    <div class="hourly-temp">28°</div>
+                    <div class="hourly-rain">0%</div>
+                </div>
+                <div class="hourly-item">
+                    <div class="hourly-time">15:00</div>
+                    <div class="hourly-icon">☀️</div>
+                    <div class="hourly-temp">29°</div>
+                    <div class="hourly-rain">0%</div>
+                </div>
+                <div class="hourly-item">
+                    <div class="hourly-time">16:00</div>
+                    <div class="hourly-icon">🌤️</div>
+                    <div class="hourly-temp">30°</div>
+                    <div class="hourly-rain">5%</div>
+                </div>
+                <div class="hourly-item">
+                    <div class="hourly-time">17:00</div>
+                    <div class="hourly-icon">🌤️</div>
+                    <div class="hourly-temp">31°</div>
+                    <div class="hourly-rain">10%</div>
+                </div>
+                <div class="hourly-item">
+                    <div class="hourly-time">18:00</div>
+                    <div class="hourly-icon">🌅</div>
+                    <div class="hourly-temp">29°</div>
+                    <div class="hourly-rain">15%</div>
+                </div>
+                <div class="hourly-item">
+                    <div class="hourly-time">19:00</div>
+                    <div class="hourly-icon">🌆</div>
+                    <div class="hourly-temp">27°</div>
+                    <div class="hourly-rain">20%</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="forecast">
+            <div class="forecast-title">4日間の予報</div>
+            <div class="forecast-items">
+                <div class="forecast-item">
+                    <div class="forecast-day">火</div>
+                    <div class="forecast-icon">🌤️</div>
+                    <div class="forecast-temp">30°/22°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-day">水</div>
+                    <div class="forecast-icon">🌧️</div>
+                    <div class="forecast-temp">25°/19°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-day">木</div>
+                    <div class="forecast-icon">⛅</div>
+                    <div class="forecast-temp">27°/20°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-day">金</div>
+                    <div class="forecast-icon">☀️</div>
+                    <div class="forecast-temp">31°/23°</div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="refresh-btn">データを更新</button>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
