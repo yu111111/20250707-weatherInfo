@@ -85,6 +85,8 @@ function getCurrentLocationWeather() {
  * @param {number} lon - 経度
  */
 async function getWeatherData(city, lat, lon) {
+    showLoadingState(); // 読み込み状態を表示
+
     // APIキーのチェックは不要になります
     // if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
     //     alert('APIキーが設定されていません。config.jsを確認してください。');
@@ -240,4 +242,22 @@ function getWeatherBgClass(weatherId) {
     if (weatherId === 800) return 'sunny';
     if (weatherId > 800) return 'cloudy';
     return 'sunny'; // デフォルト
+}
+
+/**
+ * UIを読み込み中の状態にする
+ */
+function showLoadingState() {
+    locationEl.textContent = 'データを読み込み中...';
+    dateEl.textContent = '';
+    weatherIconEl.textContent = '';
+    temperatureEl.textContent = '';
+    tempHighEl.textContent = '';
+    tempLowEl.textContent = '';
+    weatherDescriptionEl.textContent = '';
+    humidityEl.textContent = '';
+    windEl.textContent = '';
+    pressureEl.textContent = '';
+    hourlyItemsEl.innerHTML = '';
+    forecastItemsEl.innerHTML = '';
 }
