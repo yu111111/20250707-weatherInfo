@@ -133,6 +133,7 @@ function updateUI(current, forecast) {
         year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'
     });
     const weatherId = current.weather[0].id;
+    console.log('Current weatherId:', weatherId); // 追加
     weatherIconEl.textContent = getWeatherIcon(weatherId);
     weatherIconEl.className = 'weather-icon'; // classをリセット
     weatherIconEl.classList.add(getWeatherBgClass(weatherId)); // 天気に合わせたclassを追加
@@ -168,13 +169,15 @@ function updateUI(current, forecast) {
             dailyForecasts[date] = {
                 temps: [],
                 icons: [],
-                weathers: {}
+                weathers: {},
+                pops: [] // 降水確率を追加
             };
         }
         dailyForecasts[date].temps.push(item.main.temp);
         dailyForecasts[date].icons.push(item.weather[0].id);
         const weatherId = item.weather[0].id;
         dailyForecasts[date].weathers[weatherId] = (dailyForecasts[date].weathers[weatherId] || 0) + 1;
+        dailyForecasts[date].pops.push(item.pop); // 降水確率を追加
     });
 
     const today = new Date().toISOString().split('T')[0];
@@ -192,12 +195,14 @@ function updateUI(current, forecast) {
         const maxTemp = Math.round(Math.max(...dayData.temps));
         const minTemp = Math.round(Math.min(...dayData.temps));
         const mostFrequentWeatherId = Object.keys(dayData.weathers).reduce((a, b) => dayData.weathers[a] > dayData.weathers[b] ? a : b);
+        console.log('Forecast most frequent weatherId for', date, ':', mostFrequentWeatherId); // 追加
 
         const forecastItemHtml = `
             <div class="forecast-item">
                 <div class="forecast-day">${dayOfWeek}</div>
                 <div class="forecast-icon">${getWeatherIcon(parseInt(mostFrequentWeatherId))}</div>
                 <div class="forecast-temp">${maxTemp}°/${minTemp}°</div>
+                <div class="forecast-pop">${Math.round(Math.max(...dayData.pops) * 100)}%</div>
             </div>
         `;
         forecastItemsEl.innerHTML += forecastItemHtml;

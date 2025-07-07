@@ -257,6 +257,12 @@ body {
     font-weight: 500;
 }
 
+.forecast-pop {
+    font-size: 10px;
+    opacity: 0.7;
+    color: #4fc3f7;
+}
+
 .search-container {
     position: relative;
     margin-bottom: 32px;
